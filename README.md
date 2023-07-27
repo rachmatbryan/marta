@@ -35,8 +35,7 @@ MARTA
 
 ### Step One: Set up an account with Compute Canada (now called: Digital Research Alliance of Canada)
 
-- If you are unable to set up this account, you will need access to a powerful graphics card, and even with a card you may not be able to run the system as it runs with ___________________ memory...
-
+- If you are unable to set up this account, you will need access to a powerful graphics card, and even with a card you may not be able to run the system as it runs with at least 32gb of RAM
 - Go to this website to learn more about The Digital Research Alliance of Canada and whether or not you're eligible to make an account: `https://alliancecan.ca/en`
 
 - Keep in mind you will need to use the Cedar branch
