@@ -1,0 +1,1 @@
+generic = {"girl":"small girl in a blue dress", "boy":"small boy wearing shorts and a t-shirt", "man":"a big man wearing long pants and a white t-shirt", "woman": "a tall woman wearing a yellow dress", "person":"a person"}

@@ -1,0 +1,11 @@
+BACKGROUND_IMAGE 2doutputs/beautiful-white-sandy-beach-with-no-people.png
+GROUND_IMAGE 2doutputs/beach-ground-texture.png
+USE_CYCLES False
+CHARACTER_SCALE 2
+
+CHARACTER man
+anim Walk.fbx rigged/manWalk.fbx
+ 
+ANIMATION
+man position 0 -2 0 0
+man path Walk.fbx -6 -2 0 6 -2 0 0
