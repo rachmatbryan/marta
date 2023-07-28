@@ -19,6 +19,9 @@ MARTA
 - NOTE: If you ever want to leave your virtual environment simply type `deactivate`
 
 - Next you'll want to run the requirements.txt file to install the needed dependencies for the project. This can be done with this command: `pip install -r requirements.txt`. Keep in mind that for this to work, you will need to cd into the correct folder. Note: it will take a while for the requirements page to install.
-- Note: If you are getting errors after installing the requirement.txt page, you are goimg to have to install dependencies one by one. This can be accomplished by running the program and adding the dependencies that it says are missing in the errors. If you run `python nlpmain.py` and get module errors, this means that you are still missing some dependencies.
+  
+- Note: If you are getting errors after installing the requirement.txt page, you are goimg to have to install dependencies one by one. This can be accomplished by running the program and adding the dependencies that it says are missing in the errors. If you run `python marta.py` and get module errors, this means that you are still missing some dependencies.
 
-- Once the requirements page has installed, try running the nlpmain.py file with  `python nlpmain.py` if there are any missing packages install them with pip and try rerunning.
+- You would also have to download the diffusion model from stable diffusion `https://huggingface.co/CompVis/stable-diffusion-v-1-4-original` and download `sd-v1-4.ckpt` and place it in `models/ldm/stable-diffusion-v1/
+
+- Once the requirements page has installed, try running the nlpmain.py file with  `python marta.py` if there are any missing packages install them with pip and try rerunning.
