@@ -83,7 +83,7 @@ print(setting)
 print("Verbs: ")
 print(action)
 
-#salloc --time=1:0:0 --gres=gpu:v100l:1 --cpus-per-task=16 --mem=63500M --ntasks=1 --account=def-pimentel
+#Generate 2D assets
 for i in range(0,len(setting)):
     os.system(f"python scripts/txt2img.py --prompt \'{str(setting[i])}\'  --skip_grid --plms")
 for i in location:

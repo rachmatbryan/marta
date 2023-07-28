@@ -9,6 +9,7 @@ from shap_e.util.notebooks import create_pan_cameras, decode_latent_images, gif_
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #salloc --time=1:0:0 --gres=gpu:v100l:1 --cpus-per-task=16 --mem=63500M --ntasks=1 --account=def-pimentel
 #python run.py
+#salloc --time=1:0:0 --gres=gpu:v100l:1 --cpus-per-task=16 --mem=63500M --ntasks=1 --account=def-pimentel
 #python stable-diffusion/scripts/txt2img.py --prompt "a photograph of an astronaut riding a horse" --plms 
 xm = load_model('transmitter', device=device)
 model = load_model('text300M', device=device)
