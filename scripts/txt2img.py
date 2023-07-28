@@ -110,7 +110,7 @@ def main():
         type=str,
         nargs="?",
         help="dir to write results to",
-        default="../autoanim/"
+        default="../marta/"
     )
     parser.add_argument(
         "--skip_grid",
