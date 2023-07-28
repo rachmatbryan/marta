@@ -1,10 +1,10 @@
-MARTA
+## MARTA
 
 # Automatic Text to 3D Animations System
 
 ## Quick Installation:
 
-#If you do not have a sufficient GPU to run the program (we used Nvidia V100 32GB):
+# If you do not have a sufficient GPU to run the program (we used Nvidia V100 32GB):
 
 - First you're going to want to get an account with The Digital Research Alliance of Canada. If you are unable to set up this account, you will need access to a powerful graphics card such as an nvidia v100 gpu 32gb, or access to some similar company that can provide the RAM resources that are needed to generate all of the assets.
 
@@ -20,7 +20,7 @@ MARTA
 
 - NOTE: If you ever want to leave your virtual environment type `deactivate`
 
-#If you have the hardware requirements:
+# If you have the hardware requirements:
 
 - You'll want to run the requirements.txt file to install the needed dependencies for the project. This can be done with this command: `pip install -r requirements.txt`. Keep in mind that for this to work, you will need to cd into the correct folder. Note: it will take a while for the requirements page to install.
   
