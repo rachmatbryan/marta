@@ -13,8 +13,8 @@ from rigging.master_rigger import rig
 from rendering.render_runner import render
 from nlp.filter import classify_verb, detect_setting, water
 
+#Initiates spacy module and processes user input 
 nlp = spacy.load("en_core_web_sm")
-
 para="A man walking on the beach"
 doc = nlp(para)
 
@@ -28,7 +28,6 @@ action=[]           #Verbs
 requiredanim=[]     #Required animations
 location = detect_setting(para) #Detect setting
 animations = os.listdir("animations") #Get animation library
-
 
 for token in doc:
     if spacy.explain(token.pos_) == "noun":
@@ -70,7 +69,7 @@ for i in classified_verbs:
         if f'{i}.fbx'.lower()==j.lower():
             requiredanim.append(j)
                
-#Test     
+#Test print     
 print("Required Animations: ")
 print(requiredanim)
 print("Nouns: ")
@@ -92,14 +91,15 @@ for i in location:
        if i == key:
            os.system(f"python scripts/txt2img.py --prompt \'{str(i)} ground texture\'  --skip_grid --plms") 
 
+#Shap-E 3d model loader
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 xm = load_model('transmitter', device=device)
 model = load_model('text300M', device=device)
 diffusion = diffusion_from_config(load_config('diffusion'))
 
+#Generate 3d assets
 batch_size = 1
 guidance_scale = 20.0
-
 for i in range(0,len(prompt)):
  
     latents = sample_latents(
@@ -125,16 +125,18 @@ for i in range(0,len(prompt)):
         t = decode_latent_mesh(xm, latent).tri_mesh()
         with open(f'3doutputs/{saved[i]}.obj', 'w') as f:
             t.write_obj(f)
-          
+
+#Load file names for rigging process     
 outputs2d = os.listdir("2doutputs")
 outputs3d = os.listdir("3doutputs")
 watertrue=water(prompt)
 
+#Rig 3d model with animation file
 rig(f"3doutputs/{outputs3d[0]}",f"animations/{requiredanim[0]}",f"rigged/{anouns[0]}{requiredanim[0]}",2)
 
+#Generate scene file
 rigged = os.listdir("rigged")
 f=open("main.scene","w+")
-
 f.write(f"BACKGROUND_IMAGE 2doutputs/{outputs2d[0]}\n")
 if watertrue:
     f.write("USE_WATER True\n")
@@ -153,5 +155,6 @@ else:
     f.write(f"{anouns[0]} loop_anim {requiredanim[0]} 0 100\n")
 f.close()
 
+#Render animation using scene file
 render("main.scene","videooutput/animation.mp4")
 
