@@ -1,10 +1,8 @@
 import spacy
 import os
-from nlp.resulting_dictionary import resulting_dictionary
-from nlp.names_dates_dict import Resultant_dictionary
+import torch
 from nlp.generic_scene_dictionary import generic_settings
 from nlp.generic_dictionary import generic
-import torch
 from shap_e.diffusion.sample import sample_latents
 from shap_e.diffusion.gaussian_diffusion import diffusion_from_config
 from shap_e.models.download import load_model, load_config
@@ -13,7 +11,7 @@ from rigging.master_rigger import rig
 from rendering.render_runner import render
 from nlp.filter import classify_verb, detect_setting, water
 
-#Initiates spacy module and processes user input 
+#Initiates spacy nlp model and processes user input 
 nlp = spacy.load("en_core_web_sm")
 para="A man walking on the beach"
 doc = nlp(para)
@@ -23,33 +21,22 @@ anouns=[]           #Nouns
 prompt=[]           #Prompts, contains edited text, e.g 'tpose', 'a person'
 saved=[]            #Original names of the prompts, using it as savefile name of prompts as its unedited
 setting=[]          #Story setting
-char=[]             #Character descriptions
 action=[]           #Verbs
 requiredanim=[]     #Required animations
 location = detect_setting(para) #Detect setting
 animations = os.listdir("animations") #Get animation library
 
+#Adding values to arrays
 for token in doc:
     if spacy.explain(token.pos_) == "noun":
         for key in generic:
             if key == (str(token).lower()):
                 prompt.append(generic[str(token)] + " in a t pose")
-        #if str(token) not in location:
-        #    prompt.append(str(token) + " doing a T pose")
-        #else:
-        #    prompt.append(str(token))
         anouns.append(str(token))
         saved.append(str(token))
     elif spacy.explain(token.pos_) == "proper noun":
         pnoun.append(str(token))
-        for key in resulting_dictionary:
-            if key == (str(token)):
-                chardesc=resulting_dictionary[(str(token))]
-                char.append(chardesc)
-                prompt.append("a person that looks like "+str(token) + " doing a T pose")
-                saved.append(str(token))
-                charsetting = Resultant_dictionary[(str(token))]
-                setting.append(charsetting)
+        saved.append(str(token))      
     elif spacy.explain(token.pos_) == "verb":
         action.append(str(token))
 
@@ -69,20 +56,6 @@ for i in classified_verbs:
         if f'{i}.fbx'.lower()==j.lower():
             requiredanim.append(j)
                
-#Test print     
-print("Required Animations: ")
-print(requiredanim)
-print("Nouns: ")
-print(anouns)
-print("Names: ")
-print(pnoun)
-print("3DPrompts: ")
-print(prompt)
-print("2DPrompts: ")
-print(setting)
-print("Verbs: ")
-print(action)
-
 #Generate 2D assets
 for i in range(0,len(setting)):
     os.system(f"python scripts/txt2img.py --prompt \'{str(setting[i])}\'  --skip_grid --plms")
