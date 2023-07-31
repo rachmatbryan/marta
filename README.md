@@ -28,6 +28,6 @@
 
 - You would also have to download the diffusion model from stable diffusion `https://huggingface.co/CompVis/stable-diffusion-v-1-4-original` and download `sd-v1-4.ckpt` and place it in `models/ldm/stable-diffusion-v1/`
 
-- Once the requirements page has been installed, try running the nlpmain.py file with  `python marta.py`. If there are any missing packages, install them with pip and try rerunning the program.
+- (MAKE SURE TO DELETE EVERY FILE IN THESE FOLDERS, "2doutputs", "3doutputs", "videooutput", "rigged") Once the requirements page has been installed, try running the nlpmain.py file with  `python marta.py`. If there are any missing packages, install them with pip and try rerunning the program.
 
 - After the program finishes running, the output can be found at `videooutput/videoname.mp4`, 2d assets can be found in `2doutputs/imagename.png`, while 3d assets can be found in `3doutputs/objectname.obj`.
