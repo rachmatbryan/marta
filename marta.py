@@ -45,9 +45,7 @@ for i in location:
     for key in generic_settings:
         if i == key:
              setting.append(generic_settings[i])
-     
-#setting.append(i + " scenery")
-
+             
 #Find and append necessary verbs according to the prompt
 classified_verbs = [classify_verb(verb) for verb in action]
 for i in classified_verbs:
